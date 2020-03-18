@@ -49,22 +49,6 @@ public class CityController {
         return "city_show";
     }
     
-    @GetMapping("/countries/new")
-    public String createCountry( Model model) {
-        Country country = new Country();
-        model.addAttribute("country", country);
-        return "country_form";
-    }
 
-    
-    @PostMapping("/countries/new")
-    public String processCountryForm(@Valid Country country, BindingResult result, Model model) {
-        if (result.hasErrors()) {
-            return "country_form";
-        } 
-
-        countryRepository.save(country);
-        return "country_show";
-    }
 	
 }
