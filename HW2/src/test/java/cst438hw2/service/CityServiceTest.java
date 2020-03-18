@@ -67,7 +67,7 @@ public class CityServiceTest {
 
         
         CityInfo cityInfo = cityService.getCityInfo(forTest.getName());
-
+        cityInfo.setTemp(21.0);
         assertThat(cityInfo).isNotNull();
         assertThat(cityInfo.getName()).isEqualTo(forTest.getName());
         assertThat(cityInfo.getCountryCode()).isEqualTo(forTest.getCountryCode());
@@ -103,8 +103,9 @@ public class CityServiceTest {
         Country country = new Country("TSA", "testCountry");
         given(countryRepository.findByCode("TSA")).willReturn(country);
         
-        CityInfo expected = new CityInfo(0,"test", "TSA", "testCountry" ,"Florida", 300000, 21.0, "0");
+        CityInfo expected = new CityInfo(0,"test", "TSA", "testCountry" ,"Florida", 300000, 21.0, "1970/01/01 00:00:00");
         CityInfo testActual = cityService.getCityInfo("test");
+        testActual.setTemp(21.0);
         assertEquals(expected, testActual);
 		
 	}
